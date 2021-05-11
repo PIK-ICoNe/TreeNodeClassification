@@ -66,14 +66,14 @@ Takes a graph g and classifies its nodes into the categories given in:
     https://doi.org/10.1088/1367-2630/aa6321
 """
 function full_node_classification(g::Graph, maxiter::Int, thershold::Int)
-    leaves_per_lvl, tree_nodes, parents = nodes_and_leaves(g, 10)
+    node_class = Array{String}(undef, nv(g))
+    leaves_per_lvl, tree_nodes, parents = nodes_and_leaves(g, maxiter)
     sprouts = []
-    sparse_sprouts = []
-    dense_sprouts = []
 
     # roots are the parents of tree nodes which are not in a tree themselfs
     roots = copy(parents)
     deleteat!(roots, findall(x -> x ∈ tree_nodes, roots))
+    node_class[roots] .= "Root"
 
     # real leaves are removed at the first level
     proper_leaves = leaves_per_lvl[1]
@@ -81,6 +81,7 @@ function full_node_classification(g::Graph, maxiter::Int, thershold::Int)
     # inner tree nodes are all nodes in a tree which are not proper leaves
     inner_tree_nodes = copy(tree_nodes)
     deleteat!(inner_tree_nodes, findall(x -> x ∈ proper_leaves, inner_tree_nodes))
+    node_class[inner_tree_nodes] .= "Inner Tree Node"
 
     # sprouts are proper leaves which are adjectent to roots
     for k in proper_leaves
@@ -88,24 +89,27 @@ function full_node_classification(g::Graph, maxiter::Int, thershold::Int)
             append!(sprouts, k)
         end
     end
+
     filter!(x -> x ∉ sprouts, proper_leaves) # remove sprouts from the leaves vec
+    node_class[proper_leaves] .= "Proper Leave"
 
     # bulk nodes are all node which are neigher roots nor in a tree
     bulk = collect(1:nv(g))
     deleteat!(bulk, findall(x -> x ∈ roots, bulk))
     deleteat!(bulk, findall(x -> x ∈ tree_nodes, bulk))
+    node_class[bulk] .= "Bulk"
 
     # a sprout is dense if its root has a degree > thershold
     d_nn = neighbours_degree(g)
     for s in sprouts
         if d_nn[s][1] <= thershold
-            append!(sparse_sprouts, s)
+            node_class[s] .= "Sparse Sprout"
         else
-            append!(dense_sprouts, s)
+            node_class[s] .= "Dense Sprout"
         end
     end
 
-    return bulk, roots, proper_leaves, inner_tree_nodes, sparse_sprouts, dense_sprouts
+    return node_class
 end
 
 """
