@@ -1,15 +1,14 @@
 using TreeNodeClassification
+using SyntheticNetworks
 using GraphPlot
 using Colors
 using LightGraphs
 
-N = 100
-k = 1
+RPG = RandomPowerGrid(100, 1, 1/5, 3/10, 1/3, 1/10, rand())
+g = generate_graph(RPG)
 
-g = barabasi_albert(N,k)
 thershold = 5
-
-node_class = full_node_classification(g, 1000, thershold)
+node_class = full_node_classification(g.graph, 1000, thershold)
 
 nodecolor = [colorant"lightseagreen", colorant"orange", colorant"grey", colorant"brown", colorant"darkblue", colorant"steelblue"]
 membership = ones(Int,nv(g))

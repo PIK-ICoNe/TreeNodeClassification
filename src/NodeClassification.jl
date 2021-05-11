@@ -66,7 +66,7 @@ Takes a graph g and classifies its nodes into the categories given in:
     https://doi.org/10.1088/1367-2630/aa6321
 """
 function full_node_classification(g::Graph, maxiter::Int, thershold::Int)
-    node_class = Array{String}(undef, nv(g))
+    node_class = Array{Any}(nothing, nv(g))
     leaves_per_lvl, tree_nodes, parents = nodes_and_leaves(g, maxiter)
     sprouts = []
 
@@ -93,7 +93,7 @@ function full_node_classification(g::Graph, maxiter::Int, thershold::Int)
     filter!(x -> x ∉ sprouts, proper_leaves) # remove sprouts from the leaves vec
     node_class[proper_leaves] .= "Proper Leave"
 
-    # bulk nodes are all node which are neigher roots nor in a tree
+    # bulk nodes are all nodes which are neigher roots nor in a tree
     bulk = collect(1:nv(g))
     deleteat!(bulk, findall(x -> x ∈ roots, bulk))
     deleteat!(bulk, findall(x -> x ∈ tree_nodes, bulk))
@@ -103,9 +103,9 @@ function full_node_classification(g::Graph, maxiter::Int, thershold::Int)
     d_nn = neighbours_degree(g)
     for s in sprouts
         if d_nn[s][1] <= thershold
-            node_class[s] .= "Sparse Sprout"
+            node_class[s] = "Sparse Sprout"
         else
-            node_class[s] .= "Dense Sprout"
+            node_class[s] = "Dense Sprout"
         end
     end
 
