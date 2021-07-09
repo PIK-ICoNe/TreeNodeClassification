@@ -1,8 +1,8 @@
 """
     nodes_and_leaves(g::Graph, maxiter::Int)
 
-Iterativle remove leaves (nodes with degree = 1) from a graph g.
-Returns all leaves and their leaves as well as their parents/neighbors.
+Iteratively removes leaves (nodes with degree = 1) from a graph g.
+Returns all leaves as well as their parents/neighbors
 """
 function nodes_and_leaves(g::Graph, maxiter::Int)
     nodes_per_lvl = []
@@ -40,8 +40,8 @@ end
 """
     map_to_inital_graph(node_map, nodes)
 
-Nodes are vertices from an induced subgraph. 
-This function return the indicies of the original graph of nodes.
+The nodes are vertices from an induced subgraph. 
+This function return the indicies of the nodes in the original graph.
 """
 function map_to_inital_graph(node_map, nodes)
         if length(node_map) == 1
