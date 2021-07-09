@@ -1,6 +1,6 @@
 # TreeNodeClassification
 
-This is reimplementation of the [python version](https://github.com/PIK-ICoN/tree-node-classification) for Julia using [LightGraphs.jl](https://github.com/JuliaGraphs/LightGraphs.jl).
+This is a reimplementation of the [python version](https://github.com/PIK-ICoN/tree-node-classification) for Julia using [LightGraphs.jl](https://github.com/JuliaGraphs/LightGraphs.jl).
 
 Read the Paper for more informations:
 
