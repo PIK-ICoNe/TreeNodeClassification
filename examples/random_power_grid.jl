@@ -11,10 +11,10 @@ thershold = 5
 node_class = full_node_classification(g.graph, 1000, thershold)
 
 nodecolor = [colorant"lightseagreen", colorant"orange", colorant"grey", colorant"brown", colorant"darkblue", colorant"steelblue"]
-membership = ones(Int,nv(g))
+membership = ones(Int, nv(g))
 
 for j in 1:nv(g)
-    if node_class[j] == "Proper Leave"
+    if node_class[j] == "Proper Leaf"
         membership[j] = 2
     elseif node_class[j] == "Root"
         membership[j] = 4
