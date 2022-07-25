@@ -1,11 +1,8 @@
 using TreeNodeClassification
+using Graphs
 using Test
 
 @testset "Test Known Network" begin
-    using TreeNodeClassification
-    using Graphs
-
-    ##
     # Generate a graph with known classes
     known_node_classes = Vector{Any}(undef, 11)
     g = path_graph(7)
@@ -37,9 +34,10 @@ using Test
     known_node_classes[11] = "Proper Leaf"
 
     ##
-    # Tree Node Classification
+    # Run Tree Node Classification
     threshold = 5
     node_classes = full_node_classification(g, 1000, threshold)
 
+    # Test if they are both the same
     @test node_classes == known_node_classes
 end
