@@ -2,7 +2,7 @@ using TreeNodeClassification
 using SyntheticNetworks
 using GraphPlot
 using Colors
-using LightGraphs
+using Graphs
 
 RPG = RandomPowerGrid(100, 1, 1/5, 3/10, 1/3, 1/10, rand())
 g = generate_graph(RPG)

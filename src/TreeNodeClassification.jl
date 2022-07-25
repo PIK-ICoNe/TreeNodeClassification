@@ -1,5 +1,5 @@
 module TreeNodeClassification
-    using LightGraphs
+    using Graphs
     include("NodeClassification.jl")
 
     export full_node_classification
