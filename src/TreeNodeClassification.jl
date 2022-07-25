@@ -4,5 +4,5 @@ module TreeNodeClassification
 
     export full_node_classification
     export nodes_and_Leafs
-    export neighbours_degree
+    export neighbors_degree
 end
