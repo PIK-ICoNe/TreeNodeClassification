@@ -57,7 +57,7 @@ function map_to_initial_graph(node_map, nodes)
 end
 
 """
-    full_node_classification(g::Graph, maxiters::Int, thershold::Int)
+    full_node_classification(g::Graph, maxiters::Int, threshold::Int)
 
 Takes a graph g and classifies its nodes into the categories given in: 
 [1] Nitzbon, J., Schultz, P., Heitzig, J., Kurths, J., & Hellmann, F. (2017). 
@@ -99,7 +99,7 @@ function full_node_classification(g::Graph, maxiters::Int, threshold::Int)
     deleteat!(bulk, findall(x -> x ∈ tree_nodes, bulk))
     node_class[bulk] .= "Bulk"
 
-    # a sprout is dense if its root has a degree > thershold
+    # a sprout is dense if its root has a degree > threshold
     d_nn = neighbors_degree(g)
     for s in sprouts
         if d_nn[s][1] <= threshold
