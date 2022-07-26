@@ -1,8 +1,8 @@
 # TreeNodeClassification
 
-This is a reimplementation of the [python version](https://github.com/PIK-ICoN/tree-node-classification) for Julia using [LightGraphs.jl](https://github.com/JuliaGraphs/LightGraphs.jl).
+This is a re-implementation of the [python version](https://github.com/PIK-ICoN/tree-node-classification) for Julia using [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl).
 
-Read the Paper for more informations:
+Read the Paper for more information's:
 
 Nitzbon, J., Schultz, P., Heitzig, J., Kurths, J., & Hellmann, F. (2017)
 Deciphering the imprint of topology on nonlinear dynamical network stability. 

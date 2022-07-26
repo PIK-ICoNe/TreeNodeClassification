@@ -3,6 +3,6 @@ module TreeNodeClassification
     include("NodeClassification.jl")
 
     export full_node_classification
-    export nodes_and_leaves
-    export neighbours_degree
+    export nodes_and_Leafs
+    export neighbors_degree
 end
